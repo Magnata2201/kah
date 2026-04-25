@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delícias da Kah - Confeitaria Artesanal e Doces Finos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #d4af37;        /* Dourado Elegante */
+            --primary-dark: #b08d57;
+            --secondary: #f48fb1;      /* Rosa Delicado */
+            --secondary-light: #fce4ec;
+            --bg-light: #fffcfb;       /* Branco levemente quente */
+            --bg-alt: #fdf0ed;         /* Pêssego/Rosa muito claro */
+            --text-dark: #4e342e;      /* Marrom Escuro (Café) */
+            --text-light: #8e6d31;     /* Dourado para subtítulos */
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.7; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 700; }
+        a { text-decoration: none; transition: 0.3s ease; }
+        section { padding: 100px 5%; max-width: 1400px; margin: 0 auto; }
+
+        /* --- BOTÕES --- */
+        .btn-gold {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 14px 35px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(212, 175, 55, 0.4); color: var(--white); }
+        
+        .btn-outline {
+            display: inline-block;
+            background: transparent;
+            color: var(--primary-dark);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            border: 2px solid var(--primary);
+            text-align: center;
+        }
+        .btn-outline:hover { background: var(--primary); color: var(--white); }
+
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.8rem; color: var(--text-dark); line-height: 1.2; }
+        .section-header p { color: var(--text-light); font-size: 1.1rem; font-style: italic; margin-top: 10px; }
+        .section-header .divider { width: 80px; height: 3px; background: var(--primary); margin: 20px auto 0; border-radius: 2px; }
+
+        /* --- NAVEGAÇÃO RESPONSIVA --- */
+        nav {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo-nav img { height: 60px; object-fit: contain; }
+        .nav-links { display: flex; gap: 30px; list-style: none; align-items: center; }
+        .nav-links a { color: var(--text-dark); font-weight: 500; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a:hover { color: var(--secondary); }
+        
+        /* Menu Hambúrguer (Mobile) */
+        .menu-toggle { display: none; font-size: 1.8rem; color: var(--text-dark); cursor: pointer; }
+
+        /* --- HERO --- */
+        .hero {
+            background: linear-gradient(rgba(253, 240, 237, 0.85), rgba(255, 255, 255, 0.95)), url('https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=2000&auto=format&fit=crop') center/cover fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .hero h1 { font-size: 4.5rem; color: var(--text-dark); line-height: 1.1; margin-bottom: 20px; }
+        .hero h1 span { color: var(--primary); font-style: italic; }
+        .hero p { font-size: 1.2rem; color: #6d4c41; max-width: 700px; margin-bottom: 40px; }
+        .hero-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+
+        /* --- DIFERENCIAIS --- */
+        .diferenciais { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: -60px; position: relative; z-index: 10; padding: 0 5%; max-width: 1200px; }
+        .card-dif { background: var(--white); padding: 40px 30px; border-radius: 20px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.06); flex: 1; min-width: 280px; border-bottom: 4px solid var(--secondary); transition: 0.3s; }
+        .card-dif:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .card-dif i { font-size: 40px; color: var(--primary); margin-bottom: 20px; }
+        .card-dif h3 { font-size: 1.3rem; margin-bottom: 10px; }
+
+        /* --- SOBRE A KAH --- */
+        .sobre { display: flex; gap: 60px; align-items: center; padding-top: 120px; flex-wrap: wrap; }
+        .sobre-img-wrapper { flex: 1; min-width: 300px; position: relative; }
+        .sobre-img { border-radius: 20px; width: 100%; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .sobre-badge { position: absolute; bottom: -20px; right: -20px; background: var(--primary); color: white; padding: 20px; border-radius: 50%; font-family: 'Playfair Display'; text-align: center; font-size: 1.2rem; line-height: 1.2; box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4); border: 4px solid white;}
+        .sobre-texto { flex: 1; min-width: 300px; }
+        .sobre-texto h2 { font-size: 3rem; margin-bottom: 20px; color: var(--text-dark); line-height: 1.2; }
+        .sobre-texto p { margin-bottom: 20px; font-size: 1.05rem; color: #666; }
+
+        /* --- CARDÁPIO / PORTFÓLIO --- */
+        .cardapio-section { background-color: var(--bg-alt); max-width: 100%; }
+        .grid-produtos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .produto-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.4s; display: flex; flex-direction: column; }
+        .produto-img-box { position: relative; height: 250px; overflow: hidden; }
+        .produto-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .produto-card:hover .produto-img { transform: scale(1.08); }
+        .produto-categoria { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.95); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; color: var(--secondary); text-transform: uppercase; }
+        .produto-info { padding: 25px; text-align: center; display: flex; flex-direction: column; flex: 1; }
+        .produto-info h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        .produto-info p { color: #777; font-size: 0.95rem; margin-bottom: 20px; flex: 1; }
+        .produto-preco { font-size: 1.3rem; font-weight: 600; color: var(--primary); margin-bottom: 20px; font-family: 'Playfair Display', serif; }
+
+        /* --- COMO FUNCIONA --- */
+        .como-funciona { text-align: center; max-width: 1000px; }
+        .steps-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 50px; }
+        .step { z-index: 1; }
+        .step-number { width: 60px; height: 60px; background: var(--secondary-light); color: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; margin: 0 auto 20px; font-family: 'Playfair Display'; border: 2px solid var(--secondary); }
+
+        /* --- DEPOIMENTOS --- */
+        .depoimentos-section { background-color: var(--text-dark); color: var(--white); max-width: 100%; text-align: center; }
+        .depoimentos-section .section-header h2 { color: var(--primary); }
+        .depoimentos-section .section-header p { color: #ccc; }
+        .grid-depoimentos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .depoimento-card { background: rgba(255,255,255,0.05); padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.2); }
+        .depoimento-card i.fa-quote-left { font-size: 30px; color: var(--primary); margin-bottom: 20px; opacity: 0.5; }
+        .depoimento-texto { font-size: 1rem; font-style: italic; margin-bottom: 20px; color: #eee; line-height: 1.8; }
+
+        /* --- FAQ --- */
+        .faq-section { max-width: 800px; }
+        .faq-item { border-bottom: 1px solid #fce4ec; padding: 25px 0; }
+        .faq-pergunta { display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: var(--text-dark); font-size: 1.1rem; }
+        .faq-resposta { color: #666; margin-top: 10px; font-size: 0.95rem; }
+
+        /* --- CTA FINAL --- */
+        .cta-final { background: linear-gradient(rgba(244, 143, 177, 0.9), rgba(244, 143, 177, 0.9)), url('https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop') center/cover; max-width: 100%; text-align: center; color: white; padding: 80px 5%; }
+        .cta-final h2 { font-size: 2.5rem; margin-bottom: 20px; color: white; }
+
+        /* --- FOOTER --- */
+        footer { background: #3e2723; color: #d7ccc8; padding: 60px 5% 20px; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto 40px; text-align: left; }
+        .footer-logo { width: 160px; margin-bottom: 20px; filter: brightness(0) invert(1); opacity: 0.9; }
+        .footer-col h4 { color: var(--primary); font-size: 1.2rem; margin-bottom: 20px; }
+        .footer-col p, .footer-col a { color: #d7ccc8; margin-bottom: 10px; display: block; font-size: 0.95rem; }
+        .social-links a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; color: white; margin-right: 10px; transition: 0.3s; }
+        .social-links a:hover { background: var(--primary); transform: translateY(-3px); }
+        .copy { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.85rem; }
+
+        /* =========================================
+           REGRAS DE RESPONSIVIDADE (MOBILE & TABLET)
+           ========================================= */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3.5rem; }
+            .sobre-texto h2 { font-size: 2.5rem; }
+            section { padding: 80px 5%; }
+        }
+
+        @media (max-width: 768px) {
+            /* Ajustes do Menu Hambúrguer */
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-in-out;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+            }
+            .nav-links.active { max-height: 400px; }
+            .nav-links li { width: 100%; text-align: center; }
+            .nav-links a { display: block; padding: 15px 0; border-bottom: 1px solid var(--secondary-light); }
+            .nav-links .btn-gold { margin: 15px auto; width: 80%; }
+
+            /* Ajustes de Espaçamento e Tipografia para Celular */
+            section { padding: 60px 5%; }
+            .hero { padding-top: 120px; min-height: 80vh; }
+            .hero h1 { font-size: 2.6rem; }
+            .hero p { font-size: 1rem; }
+            .hero-btns { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
+            .hero-btns a { width: 100%; margin: 0 0 10px 0 !important; }
+
+            .section-header h2 { font-size: 2.2rem; }
+            .diferenciais { margin-top: 0; padding-top: 20px; }
+            .card-dif { padding: 30px 20px; }
+
+            .sobre { padding-top: 60px; text-align: center; gap: 40px; }
+            .sobre-badge { right: 10px; bottom: -10px; font-size: 1rem; padding: 15px; }
+            
+            .cta-final h2 { font-size: 2rem; }
+            .footer-content { text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.2rem; }
+            .section-header h2 { font-size: 1.8rem; }
+            .produto-img-box { height: 220px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo-nav">
+            <img src="logo.jpg" alt="Delícias da Kah">
+        </a>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#sobre">História</a></li>
+            <li><a href="#trabalhos">trabalhos</a></li>
+            <li><a href="#depoimentos">Clientes</a></li>
+            <li>
+                <a href="https://wa.me/5511966191682" target="_blank" class="btn-gold" style="padding: 10px 20px; font-size: 0.85rem; border-bottom: none;">
+                    <i class="fa-brands fa-whatsapp"></i> Fazer Pedido
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="inicio">
+        <h1>Transformando açúcar em <span>arte e afeto</span></h1>
+        <p>Especialistas em bolos artesanais e doces finos para casamentos, aniversários e eventos corporativos. O sabor inesquecível que a sua celebração merece.</p>
+        <div class="hero-btns">
+            <a href="#trabalhos" class="btn-gold" style="margin-right: 15px;">Ver Cardápio</a>
+            <a href="#sobre" class="btn-outline">Conhecer a Kah</a>
+        </div>
+    </section>
+
+    <div class="diferenciais">
+        <div class="card-dif">
+            <i class="fa-solid fa-medal"></i>
+            <h3>Ingredientes Premium</h3>
+            <p>Utilizamos apenas chocolate nobre, manteiga de primeira linha e frutas frescas selecionadas rigorosamente.</p>
+        </div>
+        <div class="card-dif">
+            <i class="fa-solid fa-hand-sparkles"></i>
+            <h3>Feito à Mão</h3>
+            <p>Processo 100% artesanal, sem conservantes artificiais, garantindo sabor de bolo feito em casa com visual de alta confeitaria.</p>
+        </div>
+        <div class="card-dif">
+            <i class="fa-solid fa-palette"></i>
+            <h3>Design Exclusivo</h3>
+            <p>Cada projeto é único. Criamos a decoração perfeitamente alinhada com o tema, as cores e o estilo do seu evento.</p>
+        </div>
+    </div>
+
+    <section class="sobre" id="sobre">
+        <div class="sobre-img-wrapper">
+            <img src="kah.png" alt="Preparo de doces" class="sobre-img">
+            <div class="sobre-badge">Feito com<br>Amor</div>
+        </div>
+        <div class="sobre-texto">
+            <h2>A paixão por celebrar as suas conquistas.</h2>
+            <p>A <strong>Delícias da Kah</strong> nasceu de um sonho: transformar os momentos mais felizes das pessoas em memórias palpáveis através do sabor.</p>
+            <p>Acreditamos que o bolo não é apenas a sobremesa de uma festa, ele é o centro das atenções, o momento do "parabéns", o símbolo da partilha. Por isso, nossa dedicação em cada receita é absoluta.</p>
+            <p>Desde a escolha meticulosa dos ingredientes até a entrega final da encomenda, trabalhamos com carinho, higiene impecável e um rigor técnico para entregar sempre o extraordinário.</p>
+            <br>
+            <a href="https://wa.me/5511966191682" target="_blank" class="btn-outline">Fale Conosco</a>
+        </div>
+    </section>
+
+    <section class="trabalhos" id="trabalhos">
+        <div class="section-header">
+            <h2>Nossas Criações</h2>
+            <p>Conheça nossas linhas de produtos e encante-se.</p>
+            <div class="divider"></div>
+        </div>
+
+        <div class="grid-produtos">
+            
+            <div class="produto-card">
+                <div class="produto-img-box">
+                    <span class="produto-categoria">Bolos Festivos</span>
+                    <img src="20.jpg" alt="Bolo Clássico" class="produto-img">
+                </div>
+                <div class="produto-info">
+                    <h3>Bolo Clássico para festas</h3>
+                    <p>Excelência em confeitaria artesanal. Cada camada é montada cuidadosamente para garantir estabilidade e sabor em cada fatia.</p>
+                    <div class="produto-preco"></div>
+                    <a href="https://wa.me/5511966191682?text=Olá! Gostaria de orçamento para Bolos Festivos." class="btn-outline" style="width: 100%;">Orçamento</a>
+                </div>
+            </div>
+
+            <div class="produto-card">
+                <div class="produto-img-box">
+                    <span class="produto-categoria">Doces Finos</span>
+                    <img src="32.jpg" alt="Macarons" class="produto-img">
+                </div>
+                <div class="produto-info">
+                    <h3>biscoitos personalozados</h3>
+                    <p>SPequenos detalhes que fazem uma grande diferença. Feitos com ingredientes premium, nossos biscoitos oferecem o equilíbrio ideal entre crocância e sabor delicado.</p>
+                    <div class="produto-preco"></div>
+                    <a href="https://wa.me/5511966191682?text=Olá! Gostaria de encomendar Macarons." class="btn-outline" style="width: 100%;">Encomendar</a>
+                </div>
+            </div>
+
+            <div class="produto-card">
+                <div class="produto-img-box">
+                    <span class="produto-categoria">Personalizados</span>
+                    <img src="11.jpg" alt="Cupcakes" class="produto-img">
+                </div>
+                <div class="produto-info">
+                    <h3>Doces Decorativos</h3>
+                    <p>Criatividade e sabor em cada detalhe. Nossos doces temáticos unem receitas tradicionais a uma finalização artística impecável.</p>
+                    <div class="produto-preco"></div>
+                    <a href="https://wa.me/5511966191682?text=Olá! Gostaria de orçamento para Cupcakes." class="btn-outline" style="width: 100%;">Orçamento</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="como-funciona">
+        <div class="section-header">
+            <h2>Como Encomendar</h2>
+            <p>Seu pedido perfeito a poucos passos de distância.</p>
+            <div class="divider"></div>
+        </div>
+        
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Contato</h4>
+                <p>Envie-nos uma mensagem no WhatsApp informando a data do evento.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Personalização</h4>
+                <p>Ajudamos você a escolher sabores e o design da decoração.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Reserva</h4>
+                <p>Confirmamos seu pedido mediante o pagamento do sinal (50%).</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Celebração</h4>
+                <p>Retire sua encomenda ou solicite entrega, e aproveite a festa!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="depoimentos-section" id="depoimentos">
+        <div class="section-header">
+            <h2>Nossos Clientes</h2>
+            <p>A maior recompensa é o sorriso de quem prova nossos doces.</p>
+            <div class="divider" style="background: var(--white);"></div>
+        </div>
+
+        <div class="grid-depoimentos">
+            <div class="depoimento-card">
+                <i class="fa-solid fa-quote-left"></i>
+                <p class="depoimento-texto">"O bolo do meu casamento estava lindíssimo, exatamente como eu pedi. Todo mundo elogiou a massa molhadinha!"</p>
+                <div class="cliente-nome">Camila Ribeiro</div>
+            </div>
+            <div class="depoimento-card">
+                <i class="fa-solid fa-quote-left"></i>
+                <p class="depoimento-texto">"Sou cliente fiel da Kah. Todo aniversário peço os cupcakes e docinhos. Qualidade impecável e atendimento atencioso."</p>
+                <div class="cliente-nome">Juliana Martins</div>
+            </div>
+            <div class="depoimento-card">
+                <i class="fa-solid fa-quote-left"></i>
+                <p class="depoimento-texto">"Encomendei a caixa de macarons para presentear minha mãe. Sofisticado, embalagem linda e muito, muito gostoso."</p>
+                <div class="cliente-nome">Ricardo Almeida</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="section-header">
+            <h2>Dúvidas Frequentes</h2>
+            <div class="divider"></div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-pergunta">Com quanta antecedência devo fazer meu pedido?</div>
+            <div class="faq-resposta">Recomendamos pelo menos 7 dias de antecedência para bolos e doces tradicionais, e 20 dias para casamentos.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-pergunta">Vocês fazem entregas (Delivery)?</div>
+            <div class="faq-resposta">Sim! Realizamos entregas em toda a região mediante taxa de frete calculada por distância. Também é possível retirar no local.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-pergunta">Como funciona o pagamento?</div>
+            <div class="faq-resposta">Solicitamos 50% do valor antecipado (PIX/Transferência). O restante é pago na retirada ou entrega.</div>
+        </div>
+    </section>
+
+    <section class="cta-final">
+        <h2>Pronto para adoçar seu evento?</h2>
+        <p>Nossa agenda é limitada para garantirmos a excelência. Não deixe para a última hora!</p>
+        <a href="https://wa.me/5511966191682" target="_blank" class="btn-gold" style="font-size: 1.1rem; padding: 15px 35px; margin-top: 20px;">
+            Consultar Disponibilidade
+        </a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <img src="kah.png" alt="Delícias da Kah" class="footer-logo">
+                <p>Transformando ingredientes selecionados em verdadeiras obras de arte para suas celebrações.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/5511966191682"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Links Rápidos</h4>
+                <a href="#inicio">Início</a>
+                <a href="#sobre">Nossa História</a>
+                <a href="#trabalhos">trabalhos</a>
+                <a href="#depoimentos">Depoimentos</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contato & Endereço</h4>
+                <p><i class="fa-brands fa-whatsapp"></i> (11) 96619-1682</p>
+                <p><i class="fa-regular fa-envelope"></i></p>
+                <p><i class="fa-solid fa-location-dot"></i> São Paulo, SP<br></p>
+            </div>
+        </div>
+        
+        <div class="copy">
+            &copy; 2026 Delícias da Kah. Desenvolvido para encantar.     (desenvolvido por anacleto tec (11) 91352-9132.)
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        
+        // Abre/Fecha o menu ao clicar no hambúrguer
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenu.querySelector('i');
+            if(navLinks.classList.contains('active')){
+                icon.classList.replace('fa-bars', 'fa-xmark');
+            } else {
+                icon.classList.replace('fa-xmark', 'fa-bars');
+            }
+        });
+
+        // Fecha o menu automaticamente quando clica em um link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenu.querySelector('i').classList.replace('fa-xmark', 'fa-bars');
+            });
+        });
+    </script>
+
+</body>
+</html>
